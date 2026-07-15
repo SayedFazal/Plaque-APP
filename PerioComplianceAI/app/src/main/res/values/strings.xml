@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PerioCompliance AI</string>
+
+    <!-- Auth errors. Every one of these is a mapped AuthError case; a raw Firebase message never
+         reaches the screen. -->
+    <string name="error_network">No connection. Check your network and try again.</string>
+    <string name="error_invalid_credentials">Incorrect email or password.</string>
+    <string name="error_email_in_use">An account already exists for this email.</string>
+    <string name="error_account_disabled">This account has been disabled. Contact support.</string>
+    <string name="error_too_many_attempts">Too many attempts. Try again in a few minutes.</string>
+    <string name="error_weak_password">That password is too weak. Choose a stronger one.</string>
+    <string name="error_invalid_email">That email address is not valid.</string>
+    <string name="error_email_not_verified">Verify your email address to continue.</string>
+    <string name="error_session_expired">Your session expired. Please sign in again.</string>
+    <string name="error_unknown">Something went wrong. Please try again.</string>
+
+    <!-- Field errors -->
+    <string name="field_required">This field is required.</string>
+    <string name="field_name_short">Name must be at least 3 characters.</string>
+    <string name="field_name_long">Name must be 40 characters or fewer.</string>
+    <string name="field_email_malformed">Enter a valid email address.</string>
+    <string name="field_password_short">Password must be at least 8 characters.</string>
+    <string name="field_password_long">Password must be 32 characters or fewer.</string>
+    <string name="field_password_upper">Add an uppercase letter.</string>
+    <string name="field_password_lower">Add a lowercase letter.</string>
+    <string name="field_password_digit">Add a number.</string>
+    <string name="field_password_special">Add a special character.</string>
+    <string name="field_confirm_mismatch">Passwords do not match.</string>
+
+    <!-- Password strength -->
+    <string name="strength_weak">Weak</string>
+    <string name="strength_medium">Medium</string>
+    <string name="strength_strong">Strong</string>
+
+    <!-- Login -->
+    <string name="login_title">PerioCompliance AI</string>
+    <string name="login_subtitle">Sign in to your clinical dashboard</string>
+    <string name="login_email_label">Professional Email</string>
+    <string name="login_email_hint">name@clinic.com</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_forgot">Forgot Password?</string>
+    <string name="login_remember">Keep me logged in for 30 days</string>
+    <string name="login_submit">Sign In</string>
+    <string name="login_no_account">Don\'t have an account?</string>
+    <!-- The export called this "Request Access", which reads like a waitlist rather than a button
+         that opens the sign-up form. It opens the sign-up form. -->
+    <string name="login_register">Register</string>
+
+    <!-- Register -->
+    <string name="register_title">Create an Account</string>
+    <string name="register_subtitle">Join the future of periodontal diagnostics and documentation.</string>
+    <string name="register_name_label">Full Name</string>
+    <string name="register_name_hint">Dr. Jane Smith</string>
+    <string name="register_email_hint">jane.smith@practice.com</string>
+    <string name="register_confirm_label">Confirm Password</string>
+    <string name="register_submit">Create Account</string>
+    <string name="register_have_account">Already have an account?</string>
+    <string name="register_sign_in">Sign in here</string>
+
+    <!-- Forgot password -->
+    <string name="forgot_title">Forgot Password</string>
+    <string name="forgot_email_label">Email Address</string>
+    <string name="forgot_submit">Send Instructions</string>
+    <string name="forgot_back">Back to Sign In</string>
+    <string name="forgot_sent_title">Check your email</string>
+    <string name="forgot_sent_body">If an account exists for %1$s, we have sent reset instructions to it.</string>
+    <string name="forgot_resend">Didn\'t receive the email? Try again</string>
+    <string name="forgot_security_note">Clinical Grade Security • HIPAA Compliant</string>
+
+    <!-- Email verification -->
+    <string name="verify_title">Verify your email</string>
+    <string name="verify_body">We sent a verification link to %1$s. Open it, then come back here.</string>
+    <string name="verify_check">I\'ve verified — continue</string>
+    <string name="verify_resend">Resend email</string>
+    <string name="verify_resend_in">Resend in %1$d s</string>
+    <string name="verify_still_unverified">Not verified yet. Open the link in your email, then try again.</string>
+    <string name="verify_sent">Verification email sent.</string>
+    <string name="verify_sign_out">Use a different account</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_start">Get Started</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_show_password">Show password</string>
+    <string name="cd_hide_password">Hide password</string>
+    <string name="cd_back">Back</string>
+</resources>

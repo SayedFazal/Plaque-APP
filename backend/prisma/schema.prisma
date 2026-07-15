@@ -1,0 +1,75 @@
+// PostgreSQL is the only provider, in development and in production alike.
+//
+// The tempting shortcut is SQLite locally and Postgres when deployed. Don't: the two disagree
+// about case sensitivity, dates and unique constraints, and you find out which at 2am the night
+// before the demo. One provider, one set of behaviours.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  // bcrypt hash. The plaintext password never leaves the request handler.
+  passwordHash  String
+  name          String
+  emailVerified Boolean   @default(false)
+  disabled      Boolean   @default(false)
+
+  // Brute-force tracking. Counted per account, reset on a successful sign-in.
+  failedLoginCount Int       @default(0)
+  lockedUntil      DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  refreshTokens RefreshToken[]
+  authTokens    AuthToken[]
+
+  @@index([email])
+}
+
+/// Long-lived refresh tokens, one row per active device.
+///
+/// Only the SHA-256 of the token is stored. If the database leaks, the rows are useless -- the
+/// same reason passwords are hashed. Rotation is enforced by marking the old row revoked on every
+/// refresh, so a stolen token that gets used a second time is detectable.
+model RefreshToken {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+/// Single-use, short-lived tokens sent by email: address verification and password reset.
+///
+/// Same rule as refresh tokens -- hashed at rest. `usedAt` makes them one-shot, so a reset link
+/// forwarded or left in an inbox cannot be replayed.
+model AuthToken {
+  id        String        @id @default(cuid())
+  tokenHash String        @unique
+  type      AuthTokenType
+  userId    String
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime      @default(now())
+
+  @@index([userId, type])
+}
+
+enum AuthTokenType {
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}

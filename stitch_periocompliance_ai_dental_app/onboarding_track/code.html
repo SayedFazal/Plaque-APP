@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>PerioCompliance AI - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e1e2ed",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "tertiary": "#943700",
+                    "on-surface-variant": "#434655",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e7e7f3",
+                    "primary-fixed": "#dbe1ff",
+                    "primary-container": "#2563eb",
+                    "surface-container": "#ededf9",
+                    "inverse-surface": "#2e3039",
+                    "secondary-fixed": "#dae2fd",
+                    "on-surface": "#191b23",
+                    "on-primary-container": "#eeefff",
+                    "secondary-container": "#dae2fd",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#5c647a",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "inverse-primary": "#b4c5ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d9d9e5",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#131b2e",
+                    "surface": "#faf8ff",
+                    "on-background": "#191b23",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "primary": "#004ac6",
+                    "background": "#faf8ff",
+                    "tertiary-container": "#bc4800",
+                    "on-tertiary-container": "#ffede6",
+                    "surface-container-low": "#f3f3fe",
+                    "outline": "#737686",
+                    "inverse-on-surface": "#f0f0fb",
+                    "tertiary-fixed": "#ffdbcd",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-tint": "#0053db",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#565e74",
+                    "on-tertiary-fixed": "#360f00",
+                    "outline-variant": "#c3c6d7",
+                    "surface-container-highest": "#e1e2ed"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "sm": "8px",
+                    "2xl": "48px",
+                    "lg": "24px",
+                    "3xl": "64px",
+                    "md": "16px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["11px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf8ff;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-overlay {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Scanline Animation for Dental AI feel */
+        @keyframes scanline {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .scan-effect::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #004ac6, transparent);
+            left: 0;
+            z-index: 10;
+            animation: scanline 4s linear infinite;
+        }
+
+        /* Custom Soft Shadow */
+        .soft-shadow {
+            box-shadow: 0px 4px 12px rgba(15, 23, 42, 0.05);
+        }
+
+        .active-dot {
+            width: 24px;
+            background-color: #004ac6;
+            transition: all 0.3s ease;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col items-center justify-center p-0 m-0">
+<!-- Top AppBar (Injected from Shared Components, but tailored for focused onboarding) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 px-md py-sm flex justify-between items-center h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">clinical_notes</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-primary">PerioCompliance AI</span>
+</div>
+<button class="text-on-surface-variant font-label-md hover:bg-surface-variant/50 px-4 py-2 rounded-full transition-colors active:scale-95 duration-150">
+            Skip
+        </button>
+</header>
+<!-- Main Content Area: Onboarding Canvas -->
+<main class="flex-1 w-full max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12 px-6 pt-24 pb-32">
+<!-- Left Side: Premium 3D Illustration Container -->
+<div class="relative w-full md:w-1/2 flex items-center justify-center aspect-square md:aspect-auto">
+<!-- Background Atmospheric Glow -->
+<div class="absolute w-[80%] h-[80%] bg-primary-container/10 rounded-full blur-3xl -z-10"></div>
+<!-- The "3D" Dental Scan Illustration -->
+<div class="relative w-full max-w-md aspect-square bg-surface-container-lowest rounded-[48px] soft-shadow border border-outline-variant/30 flex items-center justify-center overflow-hidden animate-float scan-effect">
+<img class="w-[85%] h-[85%] object-contain rounded-2xl" data-alt="A premium 3D digital medical illustration of a translucent human jaw and teeth with glowing blue neural network connections mapping periodontal health. The style is ultra-modern, clinical, and minimalist, set against a pristine white studio background with soft ambient lighting. The color palette is dominated by professional medical blues, clean whites, and subtle grey shadows, conveying a sense of advanced AI diagnostic technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdLkrdeS08eagvoZ0pzEohuJYzY-t6vSHuSeVphdChKLGLIlKjZNPENsz3ihmkfbLTNjq7eUi5DpCfOYKJIlIUgh-Jwgepkd_a_389cs154snW2EXoEIQBmjLNKQhis3IIpwXYTIajYccy1H-LxRWv4IAx_KIXLQ9NNAlSED3gcmlNOqrr1GOjkBS7wVK1QFGttJc7odYw_EfayJJHPcCbvWCTlNYxGJSAMml7tDHQAZIxWiaAQc42Njhyz0fpWfDo517Jw_q6w_s"/>
+<!-- Floating Data Markers (Micro-interactions) -->
+<div class="absolute top-1/4 right-1/4 glass-overlay px-3 py-2 rounded-xl flex items-center gap-2 animate-bounce transition-all duration-1000" style="animation-delay: 0.5s">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">spark</span>
+<span class="font-label-sm text-primary">AI Precise</span>
+</div>
+<div class="absolute bottom-1/3 left-1/4 glass-overlay px-3 py-2 rounded-xl flex items-center gap-2 animate-pulse">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="font-label-sm text-on-surface-variant">Check Gum Line</span>
+</div>
+</div>
+</div>
+<!-- Right Side: Content and CTA -->
+<div class="w-full md:w-1/2 flex flex-col items-start space-y-8 max-w-lg">
+<div class="space-y-4">
+<div class="flex items-center gap-2 text-primary font-label-md tracking-widest uppercase">
+<span class="h-1 w-8 bg-primary rounded-full"></span>
+                    Digital Wellness
+                </div>
+<h1 class="font-headline-lg text-headline-lg md:text-display-lg md:font-display-lg text-on-surface leading-tight">
+                    Track Your <br/> <span class="text-primary">Oral Health</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-sm">
+                    Leverage advanced AI imaging to monitor periodontal changes in real-time. Clinical precision from the comfort of your home.
+                </p>
+</div>
+<!-- Progress Indicators -->
+<div class="flex items-center gap-2">
+<div class="h-2 active-dot rounded-full"></div>
+<div class="h-2 w-2 bg-outline-variant rounded-full"></div>
+<div class="h-2 w-2 bg-outline-variant rounded-full"></div>
+<div class="h-2 w-2 bg-outline-variant rounded-full"></div>
+</div>
+<!-- CTA Cluster -->
+<div class="flex flex-col sm:flex-row gap-4 w-full pt-4">
+<button class="bg-primary text-on-primary font-title-md text-title-md px-8 py-4 rounded-xl flex items-center justify-center gap-3 soft-shadow hover:bg-primary/90 transition-all active:scale-95 duration-200 flex-1">
+                    Next Step
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Suppressed as per "The Destination Rule" for Transactional/Onboarding) -->
+<!-- We omit the BottomNavBar here to prioritize the Onboarding Canvas -->
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.querySelector('button');
+            btn.addEventListener('click', () => {
+                // Future navigation logic would go here
+                console.log('Navigating to screen 2...');
+            });
+
+            // Parallax effect on illustration
+            window.addEventListener('mousemove', (e) => {
+                const moveX = (e.clientX - window.innerWidth / 2) / 40;
+                const moveY = (e.clientY - window.innerHeight / 2) / 40;
+                const illustration = document.querySelector('.animate-float');
+                if(illustration) {
+                    illustration.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                }
+            });
+        });
+    </script>
+</body></html>

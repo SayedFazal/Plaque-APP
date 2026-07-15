@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>PerioCompliance AI - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #E2E8F0;
+        }
+        .circular-progress {
+            background: radial-gradient(closest-side, white 79%, transparent 80% 100%),
+                        conic-gradient(#004ac6 88%, #e1e2ed 0);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#ffffff",
+                      "surface-variant": "#e1e2ed",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "tertiary": "#943700",
+                      "on-surface-variant": "#434655",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#e7e7f3",
+                      "primary-fixed": "#dbe1ff",
+                      "primary-container": "#2563eb",
+                      "surface-container": "#ededf9",
+                      "inverse-surface": "#2e3039",
+                      "secondary-fixed": "#dae2fd",
+                      "on-surface": "#191b23",
+                      "on-primary-container": "#eeefff",
+                      "secondary-container": "#dae2fd",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#5c647a",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "inverse-primary": "#b4c5ff",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "on-error-container": "#93000a",
+                      "surface-dim": "#d9d9e5",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#131b2e",
+                      "surface": "#faf8ff",
+                      "on-background": "#191b23",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed": "#00174b",
+                      "primary": "#004ac6",
+                      "background": "#faf8ff",
+                      "tertiary-container": "#bc4800",
+                      "on-tertiary-container": "#ffede6",
+                      "surface-container-low": "#f3f3fe",
+                      "outline": "#737686",
+                      "inverse-on-surface": "#f0f0fb",
+                      "tertiary-fixed": "#ffdbcd",
+                      "surface-bright": "#faf8ff",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "surface-tint": "#0053db",
+                      "on-tertiary": "#ffffff",
+                      "secondary": "#565e74",
+                      "on-tertiary-fixed": "#360f00",
+                      "outline-variant": "#c3c6d7",
+                      "surface-container-highest": "#e1e2ed"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "sm": "8px",
+                      "2xl": "48px",
+                      "lg": "24px",
+                      "3xl": "64px",
+                      "md": "16px",
+                      "xl": "32px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "title-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-sm": ["11px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top AppBar -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-outline-variant/30 shadow-sm flex justify-between items-center px-md py-sm w-full">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-primary">PerioCompliance AI</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="px-md mt-lg space-y-lg max-w-2xl mx-auto">
+<!-- Hero Section: AI Status & Welcome -->
+<section class="space-y-md">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">MONDAY, OCT 24</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Good morning, Dr. Aris</h2>
+</div>
+<div class="flex items-center gap-sm bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-sm text-label-sm">AI SYSTEM: ACTIVE</span>
+</div>
+</div>
+</section>
+<!-- Primary Metric: Bento Grid Concept -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Compliance Gauge -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg shadow-[0_4px_12px_rgba(15,23,42,0.05)] flex flex-col items-center justify-center text-center">
+<h3 class="font-title-md text-title-md text-on-surface mb-md">Today's Compliance Score</h3>
+<div class="relative w-40 h-40 circular-progress rounded-full flex items-center justify-center">
+<div class="flex flex-col items-center">
+<span class="font-display-lg text-display-lg text-primary">88</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Excellent</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-md">Up 4% from yesterday</p>
+</div>
+<!-- Health Status Badge Card -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg shadow-[0_4px_12px_rgba(15,23,42,0.05)] space-y-md">
+<div class="flex items-center justify-between">
+<h3 class="font-title-md text-title-md text-on-surface">AI Health Status</h3>
+<span class="material-symbols-outlined text-primary" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div class="space-y-sm">
+<div class="flex items-center gap-md p-sm rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-[#059669]" data-icon="check_circle">check_circle</span>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">Protocol Sync</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time sync successful</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-sm rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-[#059669]" data-icon="check_circle">check_circle</span>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">Risk Detection</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Engines at peak precision</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-sm rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-tertiary" data-icon="warning">warning</span>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">Local Storage</p>
+<p class="font-body-md text-body-md text-on-surface-variant">82% capacity reached</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Today's Reminder Card -->
+<section>
+<div class="bg-primary-container text-on-primary-container rounded-xl p-lg shadow-lg relative overflow-hidden group">
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-on-primary-container/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
+<div class="flex items-start gap-md relative z-10">
+<div class="w-12 h-12 rounded-full bg-on-primary-container/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</div>
+<div class="flex-1">
+<h4 class="font-title-md text-title-md mb-xs">Today's Priority</h4>
+<p class="font-body-lg text-body-lg opacity-90">Verify Periodontal Records for Mr. Thompson's 2 PM appointment.</p>
+<button class="mt-md bg-on-primary-container text-primary-container px-lg py-sm rounded-full font-label-sm text-label-sm hover:opacity-90 transition-all active:scale-95">
+                            START VERIFICATION
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Activity List -->
+<section class="space-y-md">
+<div class="flex items-center justify-between">
+<h3 class="font-title-md text-title-md text-on-surface">Recent Activity</h3>
+<button class="font-label-sm text-label-sm text-primary hover:underline">View All</button>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+<div class="divide-y divide-outline-variant/20">
+<!-- Activity Item 1 -->
+<div class="p-md flex items-center gap-md hover:bg-surface-container-low transition-colors">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[20px]" data-icon="camera">camera</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">New Scan Processed</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Patient: Sarah Miller (ID: 4492)</p>
+</div>
+<p class="font-label-sm text-label-sm text-outline">12m ago</p>
+</div>
+<!-- Activity Item 2 -->
+<div class="p-md flex items-center gap-md hover:bg-surface-container-low transition-colors">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined text-[20px]" data-icon="rule">rule</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">Non-Compliance Alert</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Incomplete charting for Case #902</p>
+</div>
+<p class="font-label-sm text-label-sm text-outline">1h ago</p>
+</div>
+<!-- Activity Item 3 -->
+<div class="p-md flex items-center gap-md hover:bg-surface-container-low transition-colors">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="history">history</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">Summary Exported</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Weekly compliance report PDF</p>
+</div>
+<p class="font-label-sm text-label-sm text-outline">3h ago</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB: Quick Scan -->
+<button class="fixed bottom-24 right-6 w-16 h-16 bg-primary-container text-on-primary-container rounded-2xl shadow-xl flex items-center justify-center transition-transform hover:scale-105 active:scale-90 z-40 group">
+<span class="material-symbols-outlined text-[28px] group-hover:rotate-12 transition-transform" data-icon="camera" style="font-variation-settings: 'FILL' 1;">camera</span>
+<div class="absolute -top-12 right-0 bg-inverse-surface text-inverse-on-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">QUICK SCAN</div>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="bg-surface docked full-width bottom-0 rounded-t-xl border-t border-outline-variant/30 shadow-[0_-4px_12px_rgba(15,23,42,0.05)] fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe">
+<!-- Home Active -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="camera">camera</span>
+<span class="font-label-sm text-label-sm">Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-label-sm text-label-sm">Progress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ripple effect logic or light transitions can be added here
+            const cards = document.querySelectorAll('.bg-surface-container-lowest');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-2px)';
+                    card.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body></html>

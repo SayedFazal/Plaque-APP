@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!--
+      Android blocks cleartext HTTP by default (API 28+). The dev backend is reached over
+      `adb reverse tcp:3000 tcp:3000`, which tunnels the DEVICE's own 127.0.0.1:3000 to the
+      laptop, and that hop is plain HTTP.
+
+      The exemption is scoped to loopback and nothing else. A blanket
+      android:usesCleartextTraffic="true" would also let an attacker on the same Wi-Fi downgrade a
+      real API call to HTTP and read the bearer token off the wire. The release build talks HTTPS
+      to the deployed backend and never relies on this rule.
+    -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">127.0.0.1</domain>
+        <domain includeSubdomains="false">localhost</domain>
+    </domain-config>
+
+    <base-config cleartextTrafficPermitted="false" />
+</network-security-config>

@@ -1,0 +1,29 @@
+# Secrets — never commit. backend/.env holds the JWT signing secrets and the Neon database URL.
+.env
+.env.*
+!.env.example
+
+# Firebase (removed, but guard against it ever returning)
+google-services.json
+
+# Android
+PerioComplianceAI/local.properties
+**/build/
+.gradle/
+*.iml
+.cxx/
+
+# Node
+node_modules/
+dist/
+*.log
+
+# Machine-specific tooling / scratch
+.claude/
+dummy/
+
+# IDE
+.idea/
+.vscode/
+*.keystore
+!debug.keystore

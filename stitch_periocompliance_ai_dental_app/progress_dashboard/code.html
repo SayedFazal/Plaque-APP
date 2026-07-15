@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e1e2ed",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "tertiary": "#943700",
+                    "on-surface-variant": "#434655",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e7e7f3",
+                    "primary-fixed": "#dbe1ff",
+                    "primary-container": "#2563eb",
+                    "surface-container": "#ededf9",
+                    "inverse-surface": "#2e3039",
+                    "secondary-fixed": "#dae2fd",
+                    "on-surface": "#191b23",
+                    "on-primary-container": "#eeefff",
+                    "secondary-container": "#dae2fd",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#5c647a",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "inverse-primary": "#b4c5ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d9d9e5",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#131b2e",
+                    "surface": "#faf8ff",
+                    "on-background": "#191b23",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "primary": "#004ac6",
+                    "background": "#faf8ff",
+                    "tertiary-container": "#bc4800",
+                    "on-tertiary-container": "#ffede6",
+                    "surface-container-low": "#f3f3fe",
+                    "outline": "#737686",
+                    "inverse-on-surface": "#f0f0fb",
+                    "tertiary-fixed": "#ffdbcd",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-tint": "#0053db",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#565e74",
+                    "on-tertiary-fixed": "#360f00",
+                    "outline-variant": "#c3c6d7",
+                    "surface-container-highest": "#e1e2ed"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "sm": "8px",
+                    "2xl": "48px",
+                    "lg": "24px",
+                    "3xl": "64px",
+                    "md": "16px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["11px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E2E8F0;
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(0, 74, 198, 0.1) 0%, rgba(0, 74, 198, 0) 100%);
+        }
+        .compliance-fill {
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- Top AppBar (JSON Driven) -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 dark:border-outline/20 shadow-sm docked full-width top-0 sticky z-50 flex justify-between items-center px-md py-sm w-full">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-primary">PerioCompliance AI</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant/50 transition-colors Active: scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="max-w-7xl mx-auto px-md pt-lg space-y-lg">
+<!-- Hero Section: Progress Overview -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Daily Streak Card -->
+<div class="glass-card p-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined !text-7xl" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Current Streak</p>
+<div class="flex items-baseline gap-xs mt-sm">
+<span class="font-display-lg text-display-lg text-primary">14</span>
+<span class="font-title-md text-title-md text-outline">Days</span>
+</div>
+</div>
+<div class="mt-xl flex items-center gap-sm text-tertiary">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<span class="font-label-md text-label-md">Personal Record: 21 Days</span>
+</div>
+</div>
+<!-- Overall Compliance Score -->
+<div class="glass-card p-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Monthly Compliance</p>
+<div class="flex items-baseline gap-xs mt-sm">
+<span class="font-display-lg text-display-lg text-primary">94.2</span>
+<span class="font-title-md text-title-md text-outline">%</span>
+</div>
+</div>
+<div class="mt-xl">
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="compliance-fill h-full bg-primary" style="width: 94.2%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-outline mt-sm">3.4% increase from last month</p>
+</div>
+</div>
+<!-- AI Insight Card -->
+<div class="bg-primary-container p-lg rounded-xl shadow-sm flex flex-col justify-between text-on-primary-container">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-md text-label-md">AI Insights</span>
+</div>
+</div>
+<p class="font-body-md text-body-md mt-md italic">"Your compliance is at peak levels during morning shifts. Focus on evening charting to hit 100%."</p>
+<div class="mt-md pt-md border-t border-on-primary-container/20">
+<button class="font-label-md text-label-md flex items-center gap-xs hover:underline">
+                        View Detailed Audit <span class="material-symbols-outlined !text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Main Analytics Bento Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Weekly Progress Graph -->
+<div class="lg:col-span-8 glass-card rounded-xl p-lg shadow-sm">
+<div class="flex items-center justify-between mb-xl">
+<div>
+<h3 class="font-title-md text-title-md">Weekly Compliance Activity</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time charting accuracy tracking</p>
+</div>
+<div class="flex gap-xs bg-surface-container rounded-lg p-1">
+<button class="px-md py-xs rounded-md bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm">Week</button>
+<button class="px-md py-xs rounded-md text-outline font-label-md text-label-md hover:bg-surface-variant/30 transition-colors">Month</button>
+</div>
+</div>
+<!-- Mock Chart Area -->
+<div class="h-64 w-full relative mt-lg flex items-end justify-between px-md pb-8">
+<!-- Chart Background Lines -->
+<div class="absolute inset-0 flex flex-col justify-between border-b border-outline-variant/20 pointer-events-none pb-8">
+<div class="w-full border-t border-outline-variant/10"></div>
+<div class="w-full border-t border-outline-variant/10"></div>
+<div class="w-full border-t border-outline-variant/10"></div>
+<div class="w-full border-t border-outline-variant/10"></div>
+</div>
+<!-- Chart Bars -->
+<div class="relative group w-12 flex flex-col items-center gap-sm">
+<div class="w-8 bg-primary/20 rounded-t-lg h-[60%] hover:bg-primary/40 transition-all cursor-pointer relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary h-[85%] rounded-t-sm"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Mon</span>
+</div>
+<div class="relative group w-12 flex flex-col items-center gap-sm">
+<div class="w-8 bg-primary/20 rounded-t-lg h-[80%] hover:bg-primary/40 transition-all cursor-pointer relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary h-[92%] rounded-t-sm"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Tue</span>
+</div>
+<div class="relative group w-12 flex flex-col items-center gap-sm">
+<div class="w-8 bg-primary/20 rounded-t-lg h-[75%] hover:bg-primary/40 transition-all cursor-pointer relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary h-[88%] rounded-t-sm"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Wed</span>
+</div>
+<div class="relative group w-12 flex flex-col items-center gap-sm">
+<div class="w-8 bg-primary/20 rounded-t-lg h-[95%] hover:bg-primary/40 transition-all cursor-pointer relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary h-[96%] rounded-t-sm"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Thu</span>
+</div>
+<div class="relative group w-12 flex flex-col items-center gap-sm">
+<div class="w-8 bg-primary/20 rounded-t-lg h-[50%] hover:bg-primary/40 transition-all cursor-pointer relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary h-[70%] rounded-t-sm"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Fri</span>
+</div>
+<div class="relative group w-12 flex flex-col items-center gap-sm">
+<div class="w-8 bg-surface-container rounded-t-lg h-[20%] transition-all cursor-not-allowed"></div>
+<span class="font-label-sm text-label-sm text-outline">Sat</span>
+</div>
+<div class="relative group w-12 flex flex-col items-center gap-sm">
+<div class="w-8 bg-surface-container rounded-t-lg h-[15%] transition-all cursor-not-allowed"></div>
+<span class="font-label-sm text-label-sm text-outline">Sun</span>
+</div>
+</div>
+</div>
+<!-- Risk Profile / At-Risk Cases -->
+<div class="lg:col-span-4 glass-card rounded-xl p-lg shadow-sm border-l-4 border-l-tertiary">
+<h3 class="font-title-md text-title-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary" data-icon="report_problem">report_problem</span>
+                    Compliance Risks
+                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Needs immediate verification</p>
+<div class="mt-lg space-y-md">
+<div class="p-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface">Patient #4920</p>
+<p class="font-label-sm text-label-sm text-outline">Missing PSR notation</p>
+</div>
+<span class="material-symbols-outlined text-tertiary" data-icon="priority_high">priority_high</span>
+</div>
+<div class="p-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface">Patient #8812</p>
+<p class="font-label-sm text-label-sm text-outline">Incomplete AI analysis</p>
+</div>
+<span class="material-symbols-outlined text-tertiary" data-icon="priority_high">priority_high</span>
+</div>
+<div class="p-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface">System Audit</p>
+<p class="font-label-sm text-label-sm text-outline">Calibration mismatch (0.4mm)</p>
+</div>
+<span class="material-symbols-outlined text-tertiary" data-icon="error">error</span>
+</div>
+</div>
+<button class="w-full mt-xl py-sm bg-tertiary text-on-tertiary rounded-lg font-label-md text-label-md transition-transform active:scale-95">Resolve All Risks</button>
+</div>
+</section>
+<!-- Bottom Data Grid: Trends -->
+<section class="glass-card rounded-xl overflow-hidden shadow-sm">
+<div class="p-lg border-b border-outline-variant/30 flex items-center justify-between">
+<h3 class="font-title-md text-title-md">Historical Analytics</h3>
+<button class="flex items-center gap-xs text-primary font-label-md text-label-md hover:underline">
+                    Download CSV <span class="material-symbols-outlined !text-sm" data-icon="download">download</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-lg py-md font-label-md text-label-md text-outline">MONTH</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline">SCANS</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline">ACCURACY</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline">TREND</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline text-right">ACTION</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md font-body-md text-body-md">October 2023</td>
+<td class="px-lg py-md font-body-md text-body-md">1,240</td>
+<td class="px-lg py-md">
+<span class="bg-primary/10 text-primary px-sm py-1 rounded-full font-label-sm text-label-sm">94.2%</span>
+</td>
+<td class="px-lg py-md">
+<span class="material-symbols-outlined text-primary" data-icon="trending_up">trending_up</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md font-body-md text-body-md">September 2023</td>
+<td class="px-lg py-md font-body-md text-body-md">1,105</td>
+<td class="px-lg py-md">
+<span class="bg-primary/10 text-primary px-sm py-1 rounded-full font-label-sm text-label-sm">91.8%</span>
+</td>
+<td class="px-lg py-md">
+<span class="material-symbols-outlined text-primary" data-icon="trending_up">trending_up</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md font-body-md text-body-md">August 2023</td>
+<td class="px-lg py-md font-body-md text-body-md">1,080</td>
+<td class="px-lg py-md">
+<span class="bg-tertiary/10 text-tertiary px-sm py-1 rounded-full font-label-sm text-label-sm">88.4%</span>
+</td>
+<td class="px-lg py-md">
+<span class="material-symbols-outlined text-tertiary" data-icon="trending_down">trending_down</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Navigation Shell (BottomNavBar - Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface border-t border-outline-variant/30 shadow-[0_-4px_12px_rgba(15,23,42,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="camera">camera</span>
+<span class="font-label-sm text-label-sm">Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 Active: scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="insights" style="font-variation-settings: 'FILL' 1;">insights</span>
+<span class="font-label-sm text-label-sm">Progress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- FAB for quick action (Dashboard Context) -->
+<button class="fixed bottom-24 right-6 md:bottom-12 md:right-12 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined !text-3xl" data-icon="add">add</span>
+</button>
+<script>
+        // Micro-interaction for score animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const fill = document.querySelector('.compliance-fill');
+            if (fill) {
+                fill.style.width = '0%';
+                setTimeout(() => {
+                    fill.style.width = '94.2%';
+                }, 300);
+            }
+        });
+    </script>
+</body></html>

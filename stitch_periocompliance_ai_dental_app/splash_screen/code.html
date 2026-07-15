@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>PerioCompliance AI - Splash</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-secondary": "#ffffff",
+                "surface-variant": "#e1e2ed",
+                "on-primary-fixed-variant": "#003ea8",
+                "tertiary": "#943700",
+                "on-surface-variant": "#434655",
+                "on-tertiary-fixed-variant": "#7d2d00",
+                "on-error": "#ffffff",
+                "surface-container-high": "#e7e7f3",
+                "primary-fixed": "#dbe1ff",
+                "primary-container": "#2563eb",
+                "surface-container": "#ededf9",
+                "inverse-surface": "#2e3039",
+                "secondary-fixed": "#dae2fd",
+                "on-surface": "#191b23",
+                "on-primary-container": "#eeefff",
+                "secondary-container": "#dae2fd",
+                "error-container": "#ffdad6",
+                "on-secondary-container": "#5c647a",
+                "tertiary-fixed-dim": "#ffb596",
+                "inverse-primary": "#b4c5ff",
+                "primary-fixed-dim": "#b4c5ff",
+                "on-error-container": "#93000a",
+                "surface-dim": "#d9d9e5",
+                "on-primary": "#ffffff",
+                "on-secondary-fixed": "#131b2e",
+                "surface": "#faf8ff",
+                "on-background": "#191b23",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed": "#00174b",
+                "primary": "#004ac6",
+                "background": "#faf8ff",
+                "tertiary-container": "#bc4800",
+                "on-tertiary-container": "#ffede6",
+                "surface-container-low": "#f3f3fe",
+                "outline": "#737686",
+                "inverse-on-surface": "#f0f0fb",
+                "tertiary-fixed": "#ffdbcd",
+                "surface-bright": "#faf8ff",
+                "on-secondary-fixed-variant": "#3f465c",
+                "error": "#ba1a1a",
+                "secondary-fixed-dim": "#bec6e0",
+                "surface-tint": "#0053db",
+                "on-tertiary": "#ffffff",
+                "secondary": "#565e74",
+                "on-tertiary-fixed": "#360f00",
+                "outline-variant": "#c3c6d7",
+                "surface-container-highest": "#e1e2ed"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "xs": "4px",
+                "sm": "8px",
+                "2xl": "48px",
+                "lg": "24px",
+                "3xl": "64px",
+                "md": "16px",
+                "xl": "32px"
+            },
+            "fontFamily": {
+                "label-sm": ["Inter"],
+                "headline-lg": ["Inter"],
+                "headline-lg-mobile": ["Inter"],
+                "display-lg": ["Inter"],
+                "body-lg": ["Inter"],
+                "title-md": ["Inter"],
+                "body-md": ["Inter"],
+                "label-md": ["Inter"]
+            },
+            "fontSize": {
+                "label-sm": ["11px", {"lineHeight": "16px", "fontWeight": "600"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf8ff;
+            overflow: hidden;
+        }
+
+        .mesh-gradient {
+            background-color: #faf8ff;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 74, 198, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(0, 74, 198, 0.03) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.05) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(180, 197, 255, 0.1) 0px, transparent 50%);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0; }
+            50% { opacity: 0.15; }
+            100% { transform: scale(1.1); opacity: 0; }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .ring-animation {
+            animation: pulse-ring 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen mesh-gradient items-center justify-center p-md">
+<!-- Subtle atmospheric background details -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[10%] left-[15%] w-64 h-64 bg-primary/5 rounded-full blur-[80px]"></div>
+<div class="absolute bottom-[10%] right-[15%] w-96 h-96 bg-primary-container/5 rounded-full blur-[100px]"></div>
+</div>
+<!-- Main Splash Content Container -->
+<main class="relative flex flex-col items-center justify-center w-full max-w-xl text-center space-y-xl z-10">
+<!-- Logo Section -->
+<div class="relative group">
+<!-- Background Rings -->
+<div class="absolute inset-0 ring-animation bg-primary/20 rounded-full scale-150 blur-xl"></div>
+<div class="absolute inset-0 ring-animation bg-primary-container/10 rounded-full scale-125 blur-lg" style="animation-delay: 1.5s;"></div>
+<!-- 3D Style Logo Container -->
+<div class="relative w-32 h-32 md:w-40 md:h-40 rounded-3xl glass-panel shadow-[0px_8px_24px_rgba(0,74,198,0.12)] flex items-center justify-center animate-float overflow-hidden">
+<!-- Inner light gradient -->
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-white/60"></div>
+<!-- Clinical/Medical Icon -->
+<span class="material-symbols-outlined text-[64px] md:text-[80px] text-primary" style="font-variation-settings: 'FILL' 1;">
+                    clinical_notes
+                </span>
+<!-- High-end 3D highlight -->
+<div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/30 to-transparent"></div>
+</div>
+</div>
+<!-- Typography Section -->
+<div class="space-y-md px-lg">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight">
+                PerioCompliance AI
+            </h1>
+<div class="flex flex-col items-center space-y-sm">
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[280px] md:max-w-none">
+                    AI Powered Oral Health Monitoring
+                </p>
+<!-- Sparkle Indicator for AI -->
+<div class="flex items-center gap-xs px-md py-xs rounded-full bg-primary-container/10 border border-primary/10">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">
+                        auto_awesome
+                    </span>
+<span class="font-label-md text-label-md text-primary tracking-wide uppercase">Clinical Intelligence</span>
+</div>
+</div>
+</div>
+<!-- Loading / Progress Indicator -->
+<div class="w-full max-w-[200px] pt-2xl">
+<div class="h-1 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-0 transition-all duration-1000 ease-out shadow-[0_0_12px_rgba(0,74,198,0.4)]" id="progress-bar"></div>
+</div>
+<p class="mt-sm font-label-md text-label-md text-outline">Synchronizing clinical data...</p>
+</div>
+</main>
+<!-- Footer Identity -->
+<footer class="fixed bottom-xl w-full text-center px-lg pointer-events-none">
+<div class="flex flex-col items-center space-y-md">
+<div class="flex items-center space-x-md text-outline-variant">
+<span class="h-px w-8 bg-current opacity-30"></span>
+<p class="font-label-sm text-label-sm uppercase tracking-[0.2em]">NextGen Medical Group</p>
+<span class="h-px w-8 bg-current opacity-30"></span>
+</div>
+<!-- Minimal Security Badge -->
+<div class="flex items-center gap-xs text-outline/60">
+<span class="material-symbols-outlined text-[14px]">shield_lock</span>
+<span class="font-label-sm text-label-sm">HIPAA COMPLIANT ENCRYPTION</span>
+</div>
+</div>
+</footer>
+<!-- Interactive Mesh Logic -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBar = document.getElementById('progress-bar');
+            
+            // Simulating a smooth high-end load
+            setTimeout(() => {
+                progressBar.style.width = '35%';
+            }, 500);
+
+            setTimeout(() => {
+                progressBar.style.width = '65%';
+            }, 1800);
+
+            setTimeout(() => {
+                progressBar.style.width = '90%';
+            }, 3000);
+
+            // Subtle mouse movement parallax for the background gradient
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                const moveX = (x - 0.5) * 20;
+                const moveY = (y - 0.5) * 20;
+                
+                const mainContent = document.querySelector('main');
+                if (mainContent) {
+                    mainContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                }
+            });
+        });
+    </script>
+</body></html>
