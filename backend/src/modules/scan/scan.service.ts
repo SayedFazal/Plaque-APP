@@ -89,6 +89,73 @@ export async function listScans(userId: string, limit = 60) {
   }));
 }
 
+/**
+ * Records a scan with its captured image.
+ *
+ * The image is stored in a separate row so the frequently-queried summary/streak logic never
+ * loads multi-hundred-KB blobs. This is Module 4; Module 5 reads from ScanImage for AI analysis.
+ * Returns the summary with the freshly-recorded scan.
+ */
+export async function recordScanWithImage(
+  userId: string,
+  localDate: string,
+  imageData: Buffer,
+  mimeType: string,
+  width?: number,
+  height?: number,
+): Promise<ScanSummary> {
+  const scan = await prisma.scan.upsert({
+    where: { userId_localDate: { userId, localDate } },
+    create: { userId, localDate },
+    update: {},
+  });
+
+  // Upsert the image; a retry or re-upload on the same day replaces the old one.
+  const imageBytes = new Uint8Array(imageData);
+  await prisma.scanImage.upsert({
+    where: { scanId: scan.id },
+    create: {
+      scanId: scan.id,
+      data: imageBytes,
+      mimeType,
+      byteSize: imageData.length,
+      width,
+      height,
+    },
+    update: {
+      data: imageBytes,
+      mimeType,
+      byteSize: imageData.length,
+      width,
+      height,
+    },
+  });
+
+  return getSummary(userId, localDate);
+}
+
+/**
+ * Retrieve a scan's image for serving (Module 5 AI analysis, Module 6 history thumbnails).
+ */
+export async function getImage(userId: string, scanId: string) {
+  const image = await prisma.scanImage.findUnique({
+    where: { scanId },
+    select: { data: true, mimeType: true, byteSize: true },
+  });
+
+  if (!image) return null;
+
+  // Verify the scan belongs to this user (prevent cross-user reads).
+  const scan = await prisma.scan.findUnique({
+    where: { id: scanId },
+    select: { userId: true },
+  });
+
+  if (!scan || scan.userId !== userId) return null;
+
+  return image;
+}
+
 // --- internals ---------------------------------------------------------------
 
 /**

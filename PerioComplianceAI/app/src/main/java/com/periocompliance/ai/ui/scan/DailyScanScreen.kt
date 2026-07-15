@@ -141,7 +141,7 @@ fun DailyScanScreen(
 private fun CaptureContent(
     isSubmitting: Boolean,
     errorMessageRes: Int?,
-    onSubmit: () -> Unit,
+    onSubmit: (Uri?) -> Unit,
     onErrorDismissed: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -182,7 +182,7 @@ private fun CaptureContent(
                 capturedUri = null
                 onErrorDismissed()
             },
-            onSubmit = onSubmit,
+            onSubmit = { onSubmit(capturedUri) },
         )
 
         cameraError -> CameraErrorState(onRetry = { cameraError = false })

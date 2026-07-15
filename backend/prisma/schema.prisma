@@ -56,8 +56,33 @@ model Scan {
   localDate  String
   createdAt  DateTime @default(now())
 
+  image ScanImage?
+
   @@unique([userId, localDate])
   @@index([userId])
+}
+
+/// The captured gum photo for a scan (Module 4).
+///
+/// Stored as bytes in Postgres, one row per scan, kept in its own table so the summary/streak
+/// queries never drag a multi-hundred-KB blob along — those questions only ever touch [Scan]. This
+/// is what Module 5 reads to run the AI analysis, and what a history view (Module 6) fetches for a
+/// thumbnail.
+///
+/// DB storage is a deliberate, self-contained choice for the free tier (Render's disk is ephemeral,
+/// so a file on disk would not survive a restart). Everything image-related goes through the scan
+/// service, so swapping this for object storage (S3/GCS) later is a change to that one seam — the
+/// API shape and the client do not move.
+model ScanImage {
+  id        String   @id @default(cuid())
+  scanId    String   @unique
+  scan      Scan     @relation(fields: [scanId], references: [id], onDelete: Cascade)
+  data      Bytes
+  mimeType  String
+  byteSize  Int
+  width     Int?
+  height    Int?
+  createdAt DateTime @default(now())
 }
 
 /// Long-lived refresh tokens, one row per active device.

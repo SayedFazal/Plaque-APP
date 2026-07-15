@@ -23,3 +23,10 @@ export const submitScanSchema = z.object({
 export const summaryQuerySchema = z.object({
   localDate,
 });
+
+/** POST /scans/image multipart upload (Module 4). */
+export const uploadImageSchema = z.object({
+  localDate,
+  width: z.number().int().positive().optional(),
+  height: z.number().int().positive().optional(),
+});

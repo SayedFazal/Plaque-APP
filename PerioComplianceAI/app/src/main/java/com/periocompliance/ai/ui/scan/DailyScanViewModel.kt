@@ -1,5 +1,6 @@
 package com.periocompliance.ai.ui.scan
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.periocompliance.ai.domain.model.AuthError
@@ -7,6 +8,7 @@ import com.periocompliance.ai.domain.model.AuthResult
 import com.periocompliance.ai.domain.model.ScanSummary
 import com.periocompliance.ai.domain.usecase.GetScanSummaryUseCase
 import com.periocompliance.ai.domain.usecase.SubmitDailyScanUseCase
+import com.periocompliance.ai.domain.usecase.SubmitScanWithImageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,17 +31,19 @@ data class DailyScanUiState(
 }
 
 /**
- * Drives the daily scan (Module 3). The camera preview and capture are the screen's concern; this
- * owns the two things that touch the backend: an entry check for "already scanned today" (so a user
+ * Drives the daily scan (Modules 3 & 4). The camera preview and capture are the screen's concern;
+ * this owns the things that touch the backend: an entry check for "already scanned today" (so a user
  * who is done sees their streak instead of being asked to scan again) and the submit itself.
  *
- * The submit records the compliance event — recording that today's scan happened — which is what the
- * dashboard's streak and count are built from. Uploading the captured image is Module 4.
+ * The submit can be image-less (Module 3, submit()) or with a captured image (Module 4, submitWithImage()).
+ * Both record the compliance event and update the dashboard's streak. Module 4 also stores the image
+ * for Module 5 (AI analysis) to consume.
  */
 @HiltViewModel
 class DailyScanViewModel @Inject constructor(
     private val submitDailyScan: SubmitDailyScanUseCase,
     private val getScanSummary: GetScanSummaryUseCase,
+    private val submitScanWithImage: SubmitScanWithImageUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(DailyScanUiState())
@@ -62,12 +66,18 @@ class DailyScanViewModel @Inject constructor(
         }
     }
 
-    fun onSubmit() {
+    fun onSubmit(imageUri: Uri? = null) {
         if (_uiState.value.isSubmitting) return
         _uiState.update { it.copy(isSubmitting = true, error = null) }
 
         viewModelScope.launch {
-            when (val result = submitDailyScan()) {
+            val result = if (imageUri != null) {
+                submitScanWithImage(imageUri)
+            } else {
+                submitDailyScan()
+            }
+
+            when (result) {
                 is AuthResult.Success -> _uiState.update {
                     it.copy(
                         isSubmitting = false,
