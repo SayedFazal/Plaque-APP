@@ -9,7 +9,7 @@ services:
     buildCommand: cd backend && npm ci --include=dev && npm run build
     # migrate deploy (not `migrate dev`) applies existing migrations without ever prompting or
     # generating new ones. `migrate dev` on a production database can offer to reset it.
-    startCommand: npm run db:deploy && npm start
+    startCommand: cd backend && npm run db:deploy && npm start
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
