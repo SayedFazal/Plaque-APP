@@ -3,7 +3,9 @@ import multer from 'multer';
 import { requireAuth, requireVerified, validateBody } from '../../middleware/index.js';
 import { submitScanSchema, summaryQuerySchema, uploadImageSchema } from './scan.schemas.js';
 import * as service from './scan.service.js';
+import * as resultService from './scan-result.service.js';
 import { AppError } from '../../utils/errors.js';
+import { MockAIProvider } from './ai-provider.js';
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -122,6 +124,53 @@ scanRouter.get(
       res.set('Content-Type', image.mimeType);
       res.set('Content-Length', String(image.byteSize));
       res.send(image.data);
+    }
+  }),
+);
+
+/**
+ * Trigger AI analysis for a scan (Module 5).
+ *
+ * Idempotent: if an analysis already exists for this scan, returns the existing result
+ * without re-running the AI. Access control: the scan must belong to the requesting user.
+ */
+scanRouter.post(
+  '/:scanId/analyze',
+  handle(async (req, res) => {
+    if (!req.userId) throw AppError.sessionExpired();
+
+    const scan = await service.getScanById(req.userId, req.params.scanId || '');
+    if (!scan) {
+      throw AppError.validationFailed([{ field: 'scanId', message: 'Scan not found' }]);
+    }
+
+    const aiProvider = new MockAIProvider();
+    const result = await resultService.analyzeScan(req.params.scanId || '', aiProvider);
+    res.status(201).json(result);
+  }),
+);
+
+/**
+ * Retrieve an analysis result for a scan (Module 5).
+ *
+ * Returns 404 if the scan has no analysis (analysis hasn't been triggered yet, or the
+ * scan does not exist / does not belong to the user).
+ */
+scanRouter.get(
+  '/:scanId/result',
+  handle(async (req, res) => {
+    if (!req.userId) throw AppError.sessionExpired();
+
+    const scan = await service.getScanById(req.userId, req.params.scanId || '');
+    if (!scan) {
+      throw AppError.validationFailed([{ field: 'scanId', message: 'Scan not found' }]);
+    }
+
+    const result = await resultService.getResult(req.params.scanId || '');
+    if (!result) {
+      res.status(404).json({ error: 'Analysis not found' });
+    } else {
+      res.json(result);
     }
   }),
 );

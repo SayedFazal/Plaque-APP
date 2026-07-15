@@ -26,6 +26,7 @@ import com.periocompliance.ai.ui.auth.verify.VerifyEmailScreen
 import com.periocompliance.ai.ui.dashboard.HomeDashboardScreen
 import com.periocompliance.ai.ui.designsystem.DesignSystemScreen
 import com.periocompliance.ai.ui.scan.DailyScanScreen
+import com.periocompliance.ai.ui.scanresult.ScanResultScreen
 import com.periocompliance.ai.ui.theme.PerioTheme
 
 /**
@@ -139,7 +140,13 @@ fun PerioNavHost(
                     onClose = { navController.popBackStack() },
                 )
             }
-            composable(Routes.AI_RESULT) { NotBuiltYet("AI Result", module = 5) }
+            composable(Routes.AI_RESULT) { backStackEntry ->
+                val scanId = backStackEntry.arguments?.getString("scanId") ?: ""
+                ScanResultScreen(
+                    scanId = scanId,
+                    onClose = { navController.popBackStack() },
+                )
+            }
             composable(Routes.HISTORY) { NotBuiltYet("History", module = 6) }
             composable(Routes.PROGRESS_DASHBOARD) { NotBuiltYet("Progress Dashboard", module = 7) }
             composable(Routes.NOTIFICATIONS) { NotBuiltYet("Notifications", module = 8) }

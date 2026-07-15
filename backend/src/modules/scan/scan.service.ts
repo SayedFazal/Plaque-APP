@@ -156,6 +156,18 @@ export async function getImage(userId: string, scanId: string) {
   return image;
 }
 
+/** Check if a scan exists and belongs to the user. Returns the scan or null. */
+export async function getScanById(userId: string, scanId: string) {
+  const scan = await prisma.scan.findUnique({
+    where: { id: scanId },
+    select: { userId: true, id: true },
+  });
+
+  if (!scan || scan.userId !== userId) return null;
+
+  return scan;
+}
+
 // --- internals ---------------------------------------------------------------
 
 /**

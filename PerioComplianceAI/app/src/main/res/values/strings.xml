@@ -152,4 +152,21 @@
     <!-- Submit error -->
     <string name="scan_error_title">Couldn\'t save your scan</string>
     <string name="scan_retry">Try again</string>
+
+    <!-- Scan result (Module 5) -->
+    <string name="result_title">Analysis Results</string>
+    <string name="result_cd_close">Close</string>
+    <string name="result_analyzing">Analyzing your scan…</string>
+    <string name="result_metrics">Gum Health Metrics</string>
+    <string name="result_bleeding">Bleeding</string>
+    <string name="result_inflammation">Inflammation</string>
+    <string name="result_plaque">Plaque</string>
+    <string name="result_overall">Overall Health Score</string>
+    <string name="result_recommendations">Recommendations</string>
+    <string name="result_done">Back to Dashboard</string>
+    <string name="result_provider">Analyzed by %1$s (%2$s)</string>
+    <string name="result_error">Analysis Failed</string>
+    <string name="result_retry">Retry Analysis</string>
+    <string name="result_dismiss">Dismiss</string>
+    <string name="result_unknown_error">Unable to analyze. Please try again.</string>
 </resources>

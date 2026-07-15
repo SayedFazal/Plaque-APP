@@ -35,7 +35,8 @@ object Routes {
     const val DAILY_SCAN = "scan"
 
     // --- Module 5: Gemini analysis result ----------------------------------------
-    const val AI_RESULT = "scan/result"
+    const val AI_RESULT = "scan/result/{scanId}"
+    fun aiResult(scanId: String) = "scan/result/$scanId"
 
     // --- Module 6: History --------------------------------------------------------
     const val HISTORY = "history"

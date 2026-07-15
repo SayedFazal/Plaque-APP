@@ -56,10 +56,37 @@ model Scan {
   localDate  String
   createdAt  DateTime @default(now())
 
-  image ScanImage?
+  image  ScanImage?
+  result ScanResult?
 
   @@unique([userId, localDate])
   @@index([userId])
+}
+
+/// The AI analysis results for a scan (Module 5).
+///
+/// One row per scan (unique scanId), stores the gum health metrics and recommendations
+/// returned by the AI provider. Kept separate from Scan so the summary/streak queries
+/// never load analysis payloads. When the user views a scan in the history (Module 6),
+/// we fetch the result here; the dashboard shows it on the home screen if the latest
+/// scan has an analysis.
+///
+/// The [provider] and [modelVersion] fields are audit trails, so we know what AI
+/// produced the result and can re-run if the model changes. Swapping providers
+/// (mock → Claude → OpenAI) is a backend-only change (service layer); the API
+/// shape does not move.
+model ScanResult {
+  id               String   @id @default(cuid())
+  scanId           String   @unique
+  scan             Scan     @relation(fields: [scanId], references: [id], onDelete: Cascade)
+  bleeding         Int      // 0-100 (percentage)
+  inflammation     Int      // 0-100
+  plaque           Int      // 0-100
+  overall_score    Int      // 0-100
+  recommendations  String[] // Array of string recommendations
+  provider         String   // "mock", "claude", "openai", etc.
+  modelVersion     String   // e.g., "1.0", "gpt-4-vision"
+  createdAt        DateTime @default(now())
 }
 
 /// The captured gum photo for a scan (Module 4).
