@@ -21,7 +21,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    // Where the app looks for the backend. Override without touching code:
+    // Where the app looks for the backend. Every build type talks to the deployed HTTPS backend —
+    // no USB cable, no `adb reverse`, no laptop. Override without touching code:
     //     ./gradlew assembleDemo -Pperio.apiBaseUrl=https://your-api.onrender.com/
     // Must end in a slash — Retrofit requires it.
     val deployedApiUrl = providers.gradleProperty("perio.apiBaseUrl")
@@ -30,18 +31,15 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
-            // 127.0.0.1 is the DEVICE's own loopback, tunnelled to the laptop by
-            // `adb reverse tcp:3000 tcp:3000`. Not 10.0.2.2 (that is the emulator's host alias) and
-            // not a LAN IP (venue Wi-Fi usually isolates clients, so it dies exactly when you demo).
-            buildConfigField("String", "API_BASE_URL", "\"http://127.0.0.1:3000/\"")
+            buildConfigField("String", "API_BASE_URL", "\"$deployedApiUrl\"")
         }
 
         /**
          * The build you actually demo with.
          *
          * Debug-signed, so it installs like a debug build with no keystore — but it points at the
-         * deployed HTTPS backend, so it needs no USB cable, no `adb reverse`, and no laptop. A
-         * presentation that depends on a cable staying seated is one kicked table leg from failing.
+         * deployed HTTPS backend, so it needs no USB cable and no laptop. A presentation that
+         * depends on a cable staying seated is one kicked table leg from failing.
          */
         create("demo") {
             initWith(getByName("debug"))
@@ -116,6 +114,12 @@ dependencies {
 
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.security.crypto)
+
+    // CameraX — in-app capture for the daily scan (Module 3).
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)

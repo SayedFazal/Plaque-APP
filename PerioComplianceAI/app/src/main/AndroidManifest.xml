@@ -3,6 +3,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- The daily scan (Module 3) captures a photo in-app with CameraX. The feature is not required,
+         so the app still installs on a camera-less device; the scan screen handles its absence. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.any" android:required="false" />
+
     <application
         android:name=".PerioComplianceApp"
         android:allowBackup="false"

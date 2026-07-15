@@ -87,4 +87,69 @@
     <string name="cd_show_password">Show password</string>
     <string name="cd_hide_password">Hide password</string>
     <string name="cd_back">Back</string>
+
+    <!-- Home dashboard (Module 2) -->
+    <string name="dashboard_title">Home</string>
+    <string name="dashboard_greeting_morning">Good morning,</string>
+    <string name="dashboard_greeting_afternoon">Good afternoon,</string>
+    <string name="dashboard_greeting_evening">Good evening,</string>
+    <string name="dashboard_greeting_generic">Welcome back,</string>
+    <string name="dashboard_subtitle">Here\'s your gum-health overview.</string>
+
+    <string name="dashboard_hero_title">Start today\'s scan</string>
+    <string name="dashboard_hero_subtitle">A quick daily scan keeps your compliance record up to date.</string>
+
+    <string name="dashboard_progress_title">Your progress</string>
+    <string name="dashboard_progress_empty_title">No scans yet</string>
+    <string name="dashboard_progress_empty_body">Complete your first daily scan to start tracking your streak and compliance score.</string>
+    <string name="dashboard_stat_streak">Day streak</string>
+    <string name="dashboard_stat_scans">Scans</string>
+    <string name="dashboard_stat_compliance">Compliance</string>
+    <string name="dashboard_stat_compliance_empty">—</string>
+    <!-- e.g. "82%". The doubled %% escapes the literal percent sign. -->
+    <string name="dashboard_compliance_value">%1$d%%</string>
+
+    <string name="dashboard_actions_title">Quick actions</string>
+    <string name="dashboard_action_history_title">History</string>
+    <string name="dashboard_action_history_subtitle">Review past scans and reports</string>
+    <string name="dashboard_action_progress_title">Progress</string>
+    <string name="dashboard_action_progress_subtitle">Trends and charts over time</string>
+    <string name="dashboard_action_notifications_title">Reminders</string>
+    <string name="dashboard_action_notifications_subtitle">Daily scan reminders</string>
+
+    <string name="dashboard_error_title">Couldn\'t load your dashboard</string>
+    <string name="dashboard_retry">Try again</string>
+    <string name="dashboard_cd_refresh">Refresh</string>
+    <string name="dashboard_cd_sign_out">Sign out</string>
+
+    <!-- Daily Scan (Module 3) -->
+    <string name="scan_title">Daily Scan</string>
+    <string name="scan_cd_close">Close</string>
+    <string name="scan_instruction">Center your smile in the frame and capture a clear photo of your gums.</string>
+    <string name="scan_cd_capture">Capture photo</string>
+    <string name="scan_review_hint">Make sure your gums are clear and well lit.</string>
+    <string name="scan_retake">Retake</string>
+    <string name="scan_submit">Submit scan</string>
+    <string name="scan_submitting">Submitting…</string>
+
+    <!-- Camera permission -->
+    <string name="scan_permission_title">Camera access needed</string>
+    <string name="scan_permission_body">PerioCompliance AI uses your camera to capture your daily gum scan.</string>
+    <string name="scan_permission_grant">Allow camera</string>
+    <string name="scan_permission_settings">Open settings</string>
+
+    <!-- Camera unavailable -->
+    <string name="scan_camera_error">Couldn\'t start the camera. Try again.</string>
+
+    <!-- Completion -->
+    <string name="scan_success_title">Scan recorded</string>
+    <string name="scan_already_title">Already scanned today</string>
+    <string name="scan_complete_streak">%1$d-day streak</string>
+    <string name="scan_complete_first">Your streak starts today.</string>
+    <string name="scan_complete_body">Great work. Come back tomorrow to keep your streak going.</string>
+    <string name="scan_done">Done</string>
+
+    <!-- Submit error -->
+    <string name="scan_error_title">Couldn\'t save your scan</string>
+    <string name="scan_retry">Try again</string>
 </resources>

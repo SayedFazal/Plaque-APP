@@ -59,8 +59,11 @@ object NetworkModule {
     fun provideRefreshClient(logging: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(logging)
-            .connectTimeout(15, TimeUnit.SECONDS)
-            .readTimeout(15, TimeUnit.SECONDS)
+            // Same Render backend, same cold-start risk as the main client — a token refresh after
+            // an idle period must tolerate the wake-up too. Also used by the silent warm-up ping.
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
             .build()
 
     @Provides
@@ -92,8 +95,11 @@ object NetworkModule {
         .addInterceptor(authInterceptor)
         .addInterceptor(logging)
         .authenticator(authenticator)
-        .connectTimeout(15, TimeUnit.SECONDS)
+        // Render's free tier spins down when idle and takes 30–50s to cold-start. Generous timeouts
+        // let the first real request after an idle period ride out the wake-up instead of failing.
+        .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
         .build()
 
     @Provides
@@ -102,8 +108,7 @@ object NetworkModule {
         retrofit(client, json).create(AuthApi::class.java)
 
     private fun retrofit(client: OkHttpClient, json: Json): Retrofit = Retrofit.Builder()
-        // Debug: http://127.0.0.1:3000/ -- the device's own loopback, forwarded to the laptop by
-        // `adb reverse`. Release: the deployed HTTPS URL. See app/build.gradle.kts.
+        // The deployed HTTPS backend for every build type. See app/build.gradle.kts.
         .baseUrl(BuildConfig.API_BASE_URL)
         .client(client)
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))

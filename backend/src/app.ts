@@ -3,6 +3,7 @@ import express from 'express';
 import helmet from 'helmet';
 import { errorHandler, notFound } from './middleware/index.js';
 import { authRouter } from './modules/auth/auth.routes.js';
+import { scanRouter } from './modules/scan/scan.routes.js';
 
 export function createApp() {
   const app = express();
@@ -22,6 +23,7 @@ export function createApp() {
   });
 
   app.use('/auth', authRouter);
+  app.use('/scans', scanRouter);
 
   app.use(notFound);
   app.use(errorHandler);

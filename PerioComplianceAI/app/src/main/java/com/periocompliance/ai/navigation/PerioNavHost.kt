@@ -23,7 +23,9 @@ import com.periocompliance.ai.ui.auth.register.RegisterScreen
 import com.periocompliance.ai.ui.auth.splash.SplashScreen
 import com.periocompliance.ai.ui.auth.splash.StartDestination
 import com.periocompliance.ai.ui.auth.verify.VerifyEmailScreen
+import com.periocompliance.ai.ui.dashboard.HomeDashboardScreen
 import com.periocompliance.ai.ui.designsystem.DesignSystemScreen
+import com.periocompliance.ai.ui.scan.DailyScanScreen
 import com.periocompliance.ai.ui.theme.PerioTheme
 
 /**
@@ -113,8 +115,30 @@ fun PerioNavHost(
         }
 
         navigation(startDestination = Routes.HOME_DASHBOARD, route = Routes.Graph.MAIN) {
-            composable(Routes.HOME_DASHBOARD) { NotBuiltYet("Home Dashboard", module = 2) }
-            composable(Routes.DAILY_SCAN) { NotBuiltYet("Daily Scan", module = 3) }
+            composable(Routes.HOME_DASHBOARD) {
+                HomeDashboardScreen(
+                    onStartScan = { navController.navigate(Routes.DAILY_SCAN) },
+                    onOpenHistory = { navController.navigate(Routes.HISTORY) },
+                    onOpenProgress = { navController.navigate(Routes.PROGRESS_DASHBOARD) },
+                    onOpenNotifications = { navController.navigate(Routes.NOTIFICATIONS) },
+                    // Signing out burns the whole stack back to the login screen, the same way the
+                    // verification gate does.
+                    onSignedOut = {
+                        navController.navigate(Routes.LOGIN) {
+                            popUpTo(0) { inclusive = true }
+                            launchSingleTop = true
+                        }
+                    },
+                )
+            }
+            composable(Routes.DAILY_SCAN) {
+                DailyScanScreen(
+                    // Both routes return to the dashboard; the combined summary flow means the
+                    // progress cards already reflect the new scan by the time we land back.
+                    onDone = { navController.popBackStack() },
+                    onClose = { navController.popBackStack() },
+                )
+            }
             composable(Routes.AI_RESULT) { NotBuiltYet("AI Result", module = 5) }
             composable(Routes.HISTORY) { NotBuiltYet("History", module = 6) }
             composable(Routes.PROGRESS_DASHBOARD) { NotBuiltYet("Progress Dashboard", module = 7) }
