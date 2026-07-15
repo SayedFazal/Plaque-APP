@@ -27,15 +27,12 @@ const toKey = (ms: number): string => new Date(ms).toISOString().slice(0, 10);
 /**
  * Records today's scan and returns the refreshed summary.
  *
- * Idempotent by construction: the unique (userId, localDate) means a second call on the same day is
- * an upsert no-op, so a double-tap or an offline retry cannot record two scans for one day or nudge
- * the streak. `capturedAt` keeps the real timestamp for later; `localDate` is what everything counts.
+ * Each call creates a new scan row. Multiple scans on the same day are allowed (Module 5+).
+ * The summary counts unique calendar days with scans, not total scans.
  */
 export async function recordScan(userId: string, localDate: string): Promise<ScanSummary> {
-  await prisma.scan.upsert({
-    where: { userId_localDate: { userId, localDate } },
-    create: { userId, localDate },
-    update: {},
+  await prisma.scan.create({
+    data: { userId, localDate },
   });
 
   return getSummary(userId, localDate);
@@ -90,11 +87,10 @@ export async function listScans(userId: string, limit = 60) {
 }
 
 /**
- * Records a scan with its captured image.
+ * Records a scan with its captured image (Module 4).
  *
- * The image is stored in a separate row so the frequently-queried summary/streak logic never
- * loads multi-hundred-KB blobs. This is Module 4; Module 5 reads from ScanImage for AI analysis.
- * Returns the summary with the freshly-recorded scan.
+ * Each call creates a new scan row with its image. The image is stored separately so summary/streak
+ * queries don't drag multi-hundred-KB blobs along. Module 5 reads from ScanImage for AI analysis.
  */
 export async function recordScanWithImage(
   userId: string,
@@ -104,25 +100,15 @@ export async function recordScanWithImage(
   width?: number,
   height?: number,
 ): Promise<ScanSummary> {
-  const scan = await prisma.scan.upsert({
-    where: { userId_localDate: { userId, localDate } },
-    create: { userId, localDate },
-    update: {},
+  const scan = await prisma.scan.create({
+    data: { userId, localDate },
   });
 
-  // Upsert the image; a retry or re-upload on the same day replaces the old one.
+  // Store the image for this scan.
   const imageBytes = new Uint8Array(imageData);
-  await prisma.scanImage.upsert({
-    where: { scanId: scan.id },
-    create: {
+  await prisma.scanImage.create({
+    data: {
       scanId: scan.id,
-      data: imageBytes,
-      mimeType,
-      byteSize: imageData.length,
-      width,
-      height,
-    },
-    update: {
       data: imageBytes,
       mimeType,
       byteSize: imageData.length,

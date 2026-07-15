@@ -153,6 +153,13 @@
     <string name="scan_error_title">Couldn\'t save your scan</string>
     <string name="scan_retry">Try again</string>
 
+    <!-- Dashboard analysis (Module 5) -->
+    <string name="dashboard_analysis_title">Latest Analysis</string>
+    <string name="dashboard_analysis_overall">Overall Health</string>
+    <string name="dashboard_analysis_bleeding">Bleeding</string>
+    <string name="dashboard_analysis_inflammation">Inflammation</string>
+    <string name="dashboard_analysis_plaque">Plaque</string>
+
     <!-- Scan result (Module 5) -->
     <string name="result_title">Analysis Results</string>
     <string name="result_cd_close">Close</string>

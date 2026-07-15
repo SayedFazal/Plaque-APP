@@ -202,6 +202,16 @@ private fun DashboardList(
             }
         }
 
+        // Show analysis section if available (Module 5).
+        if (summary.progress.hasActivity && summary.progress.hasAnalysis) {
+            item {
+                Column {
+                    SectionHeader(stringResource(R.string.dashboard_analysis_title))
+                    AnalysisSection(progress = summary.progress)
+                }
+            }
+        }
+
         item { SectionHeader(stringResource(R.string.dashboard_actions_title)) }
 
         items(actions) { action ->
@@ -325,6 +335,70 @@ private fun ProgressSection(progress: ProgressSnapshot) {
         }
     } else {
         EmptyProgressCard()
+    }
+}
+
+@Composable
+private fun AnalysisSection(progress: ProgressSnapshot) {
+    Row(horizontalArrangement = Arrangement.spacedBy(PerioTheme.spacing.md)) {
+        // Overall Health Score (larger tile)
+        DashboardCard(modifier = Modifier.weight(1.5f)) {
+            Column(
+                modifier = Modifier.padding(PerioTheme.spacing.md),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(
+                    text = stringResource(R.string.dashboard_analysis_overall),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Spacer(Modifier.height(PerioTheme.spacing.xs))
+                Text(
+                    text = progress.analysisScore?.toString() ?: "—",
+                    style = MaterialTheme.typography.displaySmall,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+                Text(
+                    text = "%",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+        // Three metrics in a column
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(PerioTheme.spacing.sm),
+        ) {
+            listOf(
+                Triple(R.string.dashboard_analysis_bleeding, progress.bleeding, PerioTheme.colors.warning),
+                Triple(R.string.dashboard_analysis_inflammation, progress.inflammation, PerioTheme.colors.warning),
+                Triple(R.string.dashboard_analysis_plaque, progress.plaque, PerioTheme.colors.warning),
+            ).forEach { (labelRes, value, tint) ->
+                DashboardCard {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(PerioTheme.spacing.sm),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(
+                            text = stringResource(labelRes),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurface,
+                        )
+                        Text(
+                            text = value?.let { "$it%" } ?: "—",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = tint,
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -24,18 +24,30 @@ data class DashboardUser(
 )
 
 /**
- * The patient's compliance metrics.
+ * The patient's compliance metrics (Module 3) and latest analysis results (Module 5).
  *
  * [complianceScore] is nullable rather than 0: a score of zero and "not enough history to compute a
  * score" are different states, and rendering "0%" for a brand-new account would be a lie.
+ *
+ * Analysis fields ([analysisScore], etc.) are present if the latest scan has been analyzed. The
+ * dashboard fetches the latest ScanResult automatically; no extra user action needed. If analysis
+ * does not exist, these fields are null and the UI shows the get-started state.
  */
 data class ProgressSnapshot(
     val streakDays: Int,
     val scansCompleted: Int,
     val complianceScore: Int?,
+    // Module 5: latest analysis results (null if latest scan is not yet analyzed)
+    val analysisScore: Int? = null,
+    val bleeding: Int? = null,
+    val inflammation: Int? = null,
+    val plaque: Int? = null,
 ) {
     /** The single flag the dashboard switches on: stats row when true, get-started card when false. */
     val hasActivity: Boolean get() = scansCompleted > 0
+
+    /** True if the latest scan has analysis results available. */
+    val hasAnalysis: Boolean get() = analysisScore != null
 
     companion object {
         val Empty = ProgressSnapshot(streakDays = 0, scansCompleted = 0, complianceScore = null)

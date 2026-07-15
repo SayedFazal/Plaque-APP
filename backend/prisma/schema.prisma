@@ -36,18 +36,19 @@ model User {
   @@index([email])
 }
 
-/// One daily gum scan — the compliance action the whole product is built around (Module 3).
+/// A gum scan — the compliance action the whole product is built around (Module 3+).
 ///
 /// [localDate] is the calendar day the scan counts for, in the user's own timezone, sent by the
 /// client as a plain "YYYY-MM-DD" string. It is stored explicitly rather than derived from
 /// [capturedAt] because "did they scan today?" and streak math are questions about the user's local
-/// calendar, and answering them from a UTC timestamp is where the off-by-one-at-11pm bugs live. The
-/// unique [userId, localDate] makes "one scan per day" a database invariant, so a double-tap or a
-/// retry can never inflate a streak.
+/// calendar, and answering them from a UTC timestamp is where the off-by-one-at-11pm bugs live.
 ///
-/// The captured image itself is not stored here yet: uploading and analysing it is Module 4/5. This
-/// row is the record that the daily action happened, which is all the dashboard's streak, count and
-/// compliance score need.
+/// Multiple scans per day are allowed (Module 5+): users can capture multiple photos on the same
+/// calendar day. Streak and compliance metrics count unique days with at least one scan, not the
+/// total scan count. The "scansCompleted" field in the summary represents unique days, while
+/// a separate count of total scans is available from the list endpoint.
+///
+/// The captured image is stored in [ScanImage], and analysis results in [ScanResult].
 model Scan {
   id         String   @id @default(cuid())
   userId     String
@@ -59,8 +60,8 @@ model Scan {
   image  ScanImage?
   result ScanResult?
 
-  @@unique([userId, localDate])
   @@index([userId])
+  @@index([userId, localDate])
 }
 
 /// The AI analysis results for a scan (Module 5).
