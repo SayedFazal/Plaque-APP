@@ -6,7 +6,7 @@ services:
     name: periocompliance-api
     runtime: node
     plan: free
-    buildCommand: npm ci && npm run build
+    buildCommand: cd backend && npm ci --include=dev && npm run build
     # migrate deploy (not `migrate dev`) applies existing migrations without ever prompting or
     # generating new ones. `migrate dev` on a production database can offer to reset it.
     startCommand: npm run db:deploy && npm start
